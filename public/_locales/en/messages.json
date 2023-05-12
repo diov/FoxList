@@ -1,0 +1,6 @@
+{
+  "extName": {
+    "message": "FoxList",
+    "description": "The title of the WebExt, displayed in the web store and in the sidebar’s heading."
+  }
+}
