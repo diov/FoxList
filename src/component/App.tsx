@@ -62,9 +62,9 @@ const App: Component = () => {
   }
 
   return (
-    <div class='m-4'>
+    <div>
       <button
-        class={`flex-center ${isValidateTab() ? 'remark-btn' : 'remark-btn:disabled'}`}
+        class={`flex-center m-4 ${isValidateTab() ? 'remark-btn' : 'remark-btn:disabled'}`}
         disabled={!isValidateTab()}
         onClick={handleCurrentTab}>
         {isTabUnread() ?
@@ -74,7 +74,7 @@ const App: Component = () => {
       </button>
       {unreadTabs() && unreadTabs().length && (
         <>
-          <h5 class='text-3'>UNREAD</h5>
+          <h5 class='text-3 mx-4'>UNREAD</h5>
           <For each={unreadTabs()}>{tab =>
             <TabView tab={tab}
               handleTabClicked={() => handleTabClicked(tab)}
@@ -88,7 +88,7 @@ const App: Component = () => {
       )}
       {readedTabs() && readedTabs().length && (
         <>
-          <h5 class='text-3'>PAGES YOU'VE READ</h5>
+          <h5 class='text-3 mx-4'>PAGES YOU'VE READ</h5>
           <For each={readedTabs()}>{tab =>
             <TabView
               tab={tab}

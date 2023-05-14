@@ -10,6 +10,14 @@ const manifest: Manifest.WebExtensionManifest = {
     default_panel: 'sidebar.html',
     default_title: '__MSG_extName__'
   },
+  commands: {
+    _execute_sidebar_action: {
+      suggested_key: {
+        default: 'Alt+Shift+F'
+      },
+      description: '__MSG_commandOpenSidebar__'
+    }
+  },
   browser_specific_settings: {
     gecko: {
       id: 'foxlist@dio.wtf'

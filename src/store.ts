@@ -1,7 +1,6 @@
 import { createEffect, createResource, createSignal, onCleanup } from "solid-js"
-import Browser from "webextension-polyfill"
+import Browser, { Tabs } from "webextension-polyfill"
 import { TabInfo, TabState } from "./types"
-
 
 export function useActiveTab() {
   const [tab, setTab] = createSignal<TabInfo | null>(null)
@@ -11,13 +10,25 @@ export function useActiveTab() {
     const { title, url, favIconUrl } = tabs[0]
     setTab({ title, url, favIconUrl, state: 'unread' })
 
-    const tabListener = async ({ tabId }) => {
+    const activatedListener = async ({ tabId }: { tabId: number }) => {
       const tab = await Browser.tabs.get(tabId)
       const { title, url, favIconUrl } = tab
       setTab({ title, url, favIconUrl, state: 'unread' })
     }
-    Browser.tabs.onActivated.addListener(tabListener)
-    onCleanup(() => { Browser.tabs.onActivated.removeListener(tabListener) })
+    Browser.tabs.onActivated.addListener(activatedListener)
+
+    const updateListener = async (_tabId: number, _changeInfo: Tabs.OnUpdatedChangeInfoType, tab: Tabs.Tab) => {
+      if (!tab.active) return
+
+      const { title, url, favIconUrl } = tab
+      setTab({ title, url, favIconUrl, state: 'unread' })
+    }
+    Browser.tabs.onUpdated.addListener(updateListener)
+
+    onCleanup(() => {
+      Browser.tabs.onActivated.removeListener(activatedListener)
+      Browser.tabs.onUpdated.removeListener(updateListener)
+    })
   })
 
   return tab
@@ -55,6 +66,7 @@ export function useReadingList() {
   }
 
   const openTab = async (tab: TabInfo) => {
+    console.log('openTab')
     await Browser.tabs.update({ url: tab.url })
   }
 

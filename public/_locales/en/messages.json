@@ -2,5 +2,9 @@
   "extName": {
     "message": "FoxList",
     "description": "The title of the WebExt, displayed in the web store and in the sidebar’s heading."
+  },
+  "commandOpenSidebar": {
+    "message": "Open FoxList in siderbar",
+    "description": "A command to open the sidebar in the Firefox browser"
   }
 }
