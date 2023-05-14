@@ -1,7 +1,11 @@
 {
   "extName": {
     "message": "FoxList",
-    "description": "The title of the WebExt, displayed in the web store and in the sidebar’s heading."
+    "description": "The title of the WebExt"
+  },
+  "extDesc": {
+    "message": "Your Foxy Reading Companion",
+    "description": "The description of the WebExt"
   },
   "commandOpenSidebar": {
     "message": "Open FoxList in siderbar",

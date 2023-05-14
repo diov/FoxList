@@ -4,8 +4,7 @@
   "description": "Your Foxy Reading Companion",
   "scripts": {
     "dev": "vite build --watch",
-    "build": "vite build",
-    "serve": "vite preview"
+    "build": "vite build && web-ext build --source-dir ./dist --filename extension.xpi --overwrite-dest"
   },
   "license": "MIT",
   "devDependencies": {
@@ -17,7 +16,8 @@
     "typescript": "^4.9.5",
     "unocss": "^0.51.12",
     "vite": "^4.3.5",
-    "vite-plugin-solid": "^2.7.0"
+    "vite-plugin-solid": "^2.7.0",
+    "web-ext": "^7.6.2"
   },
   "dependencies": {
     "solid-js": "^1.7.5",
